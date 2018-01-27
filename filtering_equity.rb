@@ -1,5 +1,3 @@
-require 'pp'
-
 require_relative 'parsing_csv.rb'
 
 class FilteringEquity
