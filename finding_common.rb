@@ -53,7 +53,6 @@ def get_equity_details_among_mutual_funds
       end
       equity_details[equity_name][:count] += 1
       equity_details[equity_name][:sector] = equity_hash[:sector]
-      puts equity_details[equity_name] if equity_details[equity_name][fund_name].nil?
       equity_details[equity_name][:funds_list] << {
                                                     :fund_name => fund_name,
                                                     :quantity => equity_hash[:quantity],
