@@ -48,16 +48,18 @@ def get_equity_details_among_mutual_funds
         equity_details[equity_name] = { 
                                         :count => 0,
                                         :sector => "",
-                                        fund_name => {}
+                                        :funds_list => []
                                       }
       end
       equity_details[equity_name][:count] += 1
       equity_details[equity_name][:sector] = equity_hash[:sector]
-      equity_details[equity_name][fund_name] = {
-                                                  :quantity => equity_hash[:quantity],
-                                                  :value => equity_hash[:value],
-                                                  :percentage => equity_hash[:percentage]
-                                                }
+      puts equity_details[equity_name] if equity_details[equity_name][fund_name].nil?
+      equity_details[equity_name][:funds_list] << {
+                                                    :fund_name => fund_name,
+                                                    :quantity => equity_hash[:quantity],
+                                                    :value => equity_hash[:value],
+                                                    :percentage => equity_hash[:percentage]
+                                                  }
     end
   end
   equity_details
@@ -66,7 +68,7 @@ end
 def get_equity_with_greather_than_equal_to_count(count_val)
   equity_list = []
   get_equity_details_among_mutual_funds.each do |fund_name, details_of_fund|
-    equity_list << details_of_fund if details_of_fund[:count] >= count_val
+    equity_list << { fund_name => details_of_fund } if details_of_fund[:count] >= count_val
   end
   equity_list
 end
