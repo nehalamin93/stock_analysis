@@ -59,11 +59,11 @@ class FilteringEquity
 
   # Get equities list which are repeated among mutual funds 
   def self.get_equity_with_repeatation_more_than_value(count_val)
-    equity_list = []
+    equity_hash = {}
     get_equity_details_among_mutual_funds.each do |fund_name, details_of_fund|
-      equity_list << { fund_name => details_of_fund } if details_of_fund[:count] >= count_val
+      equity_hash[fund_name] = details_of_fund  if details_of_fund[:count] >= count_val
     end
-    equity_list
+    equity_hash
   end
 
   private
